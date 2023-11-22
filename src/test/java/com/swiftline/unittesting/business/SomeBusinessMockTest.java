@@ -1,21 +1,28 @@
 package com.swiftline.unittesting.business;
 
 import com.swiftline.unittesting.data.SomeDataService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class SomeBusinessMockTest {
-    SomeBusinessImpl business = new SomeBusinessImpl();
-    SomeDataService dataServiceMock = mock(SomeDataService.class);
 
-    @BeforeEach
-    public void before() {
-        business.setSomeDataService(dataServiceMock);
-    }
+    @InjectMocks
+    SomeBusinessImpl business;
+
+    @Mock
+    SomeDataService dataServiceMock;
+
+//    @BeforeEach
+//    public void before() {
+//        business.setSomeDataService(dataServiceMock);
+//    }
 
     @Test
     void calculateSumUsingDataService_basic() {
