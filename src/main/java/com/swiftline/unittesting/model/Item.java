@@ -1,17 +1,24 @@
 package com.swiftline.unittesting.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Entity
 public class Item {
-    private int id;
-    private String description;
-    private double price;
-    private int quantity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull private int id;
+
+    @NonNull private String description;
+
+    @NonNull private double price;
+
+    @NonNull private int quantity;
+
+    @Transient
+    private double value;
 }
